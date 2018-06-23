@@ -1,17 +1,5 @@
 //
-// grab parameter values from html input
-var queryString = $("#search-term").val();
-var startDate = $("#begin-date").val();
-var endDate = $("#end-date").val();
-var numRecs = $("#number-records").val();
 // set values with parameter keys in search object
-var testNewsArticle = {
-    'api-key': "1a68ca123e6d4eceb3b06a7fc9a1a655", 
-    'q': queryString,
-    'begin_date': startDate,
-    'end_date': endDate,
-    'page': numRecs
-  }
 // var testNewsArticle = {
 //     'api-key': "1a68ca123e6d4eceb3b06a7fc9a1a655", 
 //     'q': "wyoming",
@@ -22,8 +10,20 @@ var testNewsArticle = {
 //
 // Built by LucyBot. www.lucybot.com
 $("#search").on("click", function () {
+    var queryString = $("#search-term").val();
+    var startDate = $("#begin-date").val();
+    var endDate = $("#end-date").val();
+    var numRecs = $("#number-records").val();
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    var testNewsArticle = {
+        'api-key': "1a68ca123e6d4eceb3b06a7fc9a1a655", 
+        'q': queryString,
+        'begin_date': startDate,
+        'end_date': endDate,
+        'page': numRecs
+      }
     url += '?' + $.param(testNewsArticle);
+    console.log(url);
     var nytAPIRequest = function () {
         $.ajax({
             url: url,
