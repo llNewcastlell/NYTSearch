@@ -24,16 +24,14 @@ $("#search").on("click", function () {
       }
     url += '?' + $.param(testNewsArticle);
     console.log(url);
-    var nytAPIRequest = function () {
-        $.ajax({
-            url: url,
-            method: 'GET',
-            }).done(function(result) {
-            console.log(result);
-            }).fail(function(err) {
-            throw err;
-            });
-        }
+    $.ajax({
+        url: url,
+        method: 'GET',
+        }).done(function(result) {
+        console.log(result);
+        }).fail(function(err) {
+        throw err;
+        });
     });
 
 $("#clear").on("click", function () {
