@@ -1,4 +1,8 @@
 //
+// function to write HTML to results div
+function writeResultsToHTML (prop) {
+    $("#results").append("<p>").text(prop);
+}
 // set values with parameter keys in search object
 // var testNewsArticle = {
 //     'api-key': "1a68ca123e6d4eceb3b06a7fc9a1a655", 
@@ -27,8 +31,11 @@ $("#search").on("click", function () {
     $.ajax({
         url: url,
         method: 'GET',
-        }).done(function(result) {
-        console.log(result);
+        }).then(function(result) {
+        // console.log(result);
+        var headline = result.response.docs["0"].headline.main;
+        // console.log(headline);
+        writeResultsToHTML(headline);
         }).fail(function(err) {
         throw err;
         });
@@ -40,5 +47,3 @@ $("#clear").on("click", function () {
     $("#end-date").val("");
     $("#number-records").val(null);
 });
-
-// $("#results").append();
